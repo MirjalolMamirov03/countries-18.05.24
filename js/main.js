@@ -66,7 +66,14 @@ input.addEventListener("input", function() {
 regioinSelect.addEventListener("change", () => {
     // alert('salom')
     const selectRegion = regioinSelect.value
-    console.log(selectRegion);
+    // console.log(selectRegion);
+    
+    if (selectRegion === "all") {
+        renderCountry(countryData)
+    }else {
+        const filterRegionCountry = countryData.filter(country => country.region === selectRegion)
+        renderCountry(filterRegionCountry)
+    }
 })
 
 
