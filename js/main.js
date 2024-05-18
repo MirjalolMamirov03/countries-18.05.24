@@ -1,6 +1,8 @@
 //   https://restcountries.com/v3.1/all
 
 const countries = document.querySelector('.country-cards')
+const input = document.querySelector('.search-form__inut')
+const regioinSelect = document.querySelector('.search-form__select')
 
 let url = "https://restcountries.com/v3.1/all"
 let countryData;
@@ -25,7 +27,7 @@ function renderCountry(data) {
     
     countries.innerHTML = ""
     data.forEach(country => {
-        console.log(country);
+        // console.log(country);
         const cardLink = document.createElement('a')
         cardLink.classList.add('country-card')
         cardLink.setAttribute("href", "./country-inner.html")
@@ -36,7 +38,7 @@ function renderCountry(data) {
           <h3 class="country-title">${country.name.common}</h3>
           <p class="country-text"><b>Population:</b> ${country.population}</p>
           <p class="country-text"><b>Region:</b>${country.region}</p>
-          <p class="country-text"><b>Capital:</b> ${country.capital[0]}</p>
+          <p class="country-text"><b>Capital:</b> ${country.capital}</p>
         </div>
         `
 
@@ -44,6 +46,30 @@ function renderCountry(data) {
     });
 
 }
+
+// input Search
+
+input.addEventListener("input", function() {
+    // console.log(input.value);
+
+    let inputValue = input.value.toLowerCase()
+    // console.log(inputValue);
+
+    let filterCountry = countryData.filter(function (country) {
+        return country.name.common.toLowerCase().includes(inputValue)
+    })
+
+    renderCountry(filterCountry)
+})
+
+// region Select
+regioinSelect.addEventListener("change", () => {
+    // alert('salom')
+    const selectRegion = regioinSelect.value
+    console.log(selectRegion);
+})
+
+
 
 fetchCountryData()
 
