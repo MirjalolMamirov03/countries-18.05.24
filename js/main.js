@@ -30,7 +30,7 @@ function renderCountry(data) {
         // console.log(country);
         const cardLink = document.createElement('a')
         cardLink.classList.add('country-card')
-        cardLink.setAttribute("href", "./country-inner.html")
+        cardLink.setAttribute("href", `./country-inner.html?name = ${country.name.common}`)
 
         cardLink.innerHTML = `
         <img src="${country.flags.png}" alt="${country.flags.alt}" class="country-card__img">
